@@ -1,0 +1,104 @@
+---
+layout: default
+---
+
+<div class="home">
+  {%- if page.title -%}
+    <h1 class="page-heading">{{ page.title }}</h1>
+  {%- endif -%}
+  {{ content }}
+  <h2>Course Information</h2>
+  {{ site.course-info }}
+  <br>
+  <h2>Teaching Staff</h2>
+  <div>
+      <div>
+      <img src="/assets/zain.png"
+           width="100px" height="100px" style="float:left; margin-right:20px;">
+      </div>
+      <div>
+          <h3>Zain Asgar</h3>
+          <div>Office hours: TBA</div>
+      </div>
+      <div style="clear:both"><br></div>
+      <div>
+        <img src="/assets/pete.png"
+             width="100px" height="100px" style="float:left; margin-right:20px;">
+        </div>
+        <div>
+            <h3>Pete Warden</h3>
+            <div>Office hours: TBA</div>
+        </div>
+        <div style="clear:both"><br></div>
+      <div>
+      <div>
+        <img src="/assets/cogn_mode.png"
+             width="100px" height="100px" style="float:left; margin-right:20px;">
+        </div>
+        <div>
+            <h3>Sachin Katti</h3>
+            <div>Office hours: TBA</div>
+        </div>
+        <div style="clear:both"><br></div>
+      <div>
+        <img src="/assets/AnkitaN.jpg"
+             width="100px" height="100px" style="float:left; margin-right:20px; border-radius:50%;">
+        </div>
+        <div>
+            <h3>Ankita Nayak</h3>
+            <div>Office hours: TBA</div>
+        </div>
+        <div style="clear:both"><br></div>
+  </div>
+  <br>
+  <h2>Course Schedule</h2>
+  <table>
+  {% for week in site.data.info %}
+    <tr>
+    <td style="min-width: 6em;"><h3> Week {{ forloop.index }} </h3></td>
+    <td>
+        <p><b>{{ week.day1 }}</b>
+        <br>
+        {{ week.day1-intro }}
+        </p>
+
+        {% if week.day2 %}
+        <p><b>{{ week.day2 }}</b>
+        <br>
+        {{ week.day2-intro | markdownify }}
+        </p>
+        {% endif %}
+    </td>
+    <tr>
+  {% endfor %}
+  </table>
+  <h2>Lab Assignments</h2>
+  {% for hw in site.data.homework %}
+  <h3>Lab Assignment {{ forloop.index0 }}: {{ hw.name  }} </h3>
+  <p> {{ hw.info }} </p>
+  {% endfor %}
+  <br />
+  <h2>Grading</h2>
+  {% for g in site.data.grades %}
+  <h3> {{ g.name  }} - {{g.percent}}%</h3>
+  <ul>
+    {% for d in g.details %}
+    <li>{{ d }}</li>
+    {% endfor %}
+  </ul>
+  {% endfor %}
+  <br/>
+  <h2>Important Dates</h2>
+  <table>
+    <tr><th>Date</th><th>What's Due<th</tr>
+    {% for d in site.data.important_dates %}
+    <tr>
+      <td>{{ d.date }}</td>
+      <td>{{ d.info }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+
+
+</div>
